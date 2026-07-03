@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>StackTrace Weekly · Issue #1</title>
-<meta name="description" content="Developer tool changelogs for 2026-07-03, AI-classified by severity: 1 critical, 17 notable.">
-<link rel="canonical" href="https://stacktrace-site.vercel.app/issues/1/">
+<meta name="description" content="Developer tool changelogs for 2026-07-03, AI-classified by severity: 2 critical, 25 notable.">
+<link rel="canonical" href="https://stacktrace-web.vercel.app/issues/1/">
 <style>
   :root{--fg:#1a1a1a;--muted:#666;--crit:#b00020;--note:#996a00;--rule:#eee}
   *{box-sizing:border-box}
@@ -31,11 +31,18 @@
 <div class="wrap">
   <header>
     <h1>StackTrace Weekly · #1</h1>
-    <div class="sub">2026-06-25 → 2026-07-03 · 117 changes across 19 tools · <a href="https://stacktrace-site.vercel.app/rubric.html">how severity works</a></div>
+    <div class="sub">2026-06-25 → 2026-07-03 · 255 changes across 20 tools · <a href="https://stacktrace-web.vercel.app/rubric.html">how severity works</a></div>
   </header>
 
   
   <div class="sec crit">Critical — act before your next deploy</div>
+  
+  <div class="item crit">
+    <div class="h">Vercel <span class="tag">@vercel/backends@0.8.19</span></div>
+    <div>The isolated `services` and `experimentalServicesV2` runtime now emit function output at `index` instead of `_svc/&lt;service-name&gt;/index`. This is a breaking change to how service functions are deployed and accessed in production environments.</div>
+    <div class="act"><strong>Do this:</strong> Update any code or infrastructure that references the old `_svc/&lt;service-name&gt;/index` path to use the new `index` path before deploying.</div>
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/backends%400.8.19?utm_source=stacktrace&utm_medium=web&utm_content=critical">release notes →</a>
+  </div>
   
   <div class="item crit">
     <div class="h">Liveblocks <span class="tag">v3.20.1</span></div>
@@ -58,10 +65,22 @@
     <a href="https://github.com/better-auth/better-auth/releases/tag/v1.6.21?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
   
   
+  <div class="cat">ai-apis</div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/provider-utils@5.0.4</span> — This patch fixes a prototype pollution vulnerability in synchronous provider JSON parsing. The fix prevents malicious JSON inputs from polluting the prototype chain, and exposes a `secureJsonParse` utility for safer JSON handling.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/provider-utils%405.0.4?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  
   <div class="cat">jobs</div>
   
   <div class="item"><span class="h">Trigger.dev</span> <span class="tag">v4.5.0</span> — Trigger.dev v4.5.0 introduces AI Agents (`chat.agent`) for running durable Vercel AI SDK chat completions as resilient tasks, plus Sessions for bidirectional streams, AI Prompts for versioned templates, and new developer features like dev branches and instantiable `TriggerClient`. This is a stable release with significant new capabilities and improvements to the SDK and runtime.
     <a href="https://github.com/triggerdotdev/trigger.dev/releases/tag/v4.5.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  
+  <div class="cat">email</div>
+  
+  <div class="item"><span class="h">Resend</span> <span class="tag">v6.17.0</span> — Resend v6.17.0 adds idempotencyKey support to the emails.receiving.forward() method and introduces OAuth grant management capabilities. These are new stable features for the email API with no breaking changes.
+    <a href="https://github.com/resend/resend-node/releases/tag/v6.17.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
   
   
   <div class="cat">hosting</div>
@@ -74,6 +93,24 @@
   
   <div class="item"><span class="h">Vercel</span> <span class="tag">vercel@54.18.4</span> — Vercel CLI 54.18.4 removes the non-functional `vercel buy v0` subcommand in favor of `vercel buy credits v0`, which is a breaking change to the CLI interface. Additional improvements include better rate-limit messaging and support for lazy-generated Build Output service configs.
     <a href="https://github.com/vercel/vercel/releases/tag/vercel%4054.18.4?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">vercel@54.18.1</span> — Fixed a bug where per-service `functions` configuration in `vercel.json` was being dropped during the build process for experimental V2 services. The build now correctly applies function settings like `experimentalTriggers`, `maxDuration`, `memory`, and `regions` to each service&#39;s lambdas.
+    <a href="https://github.com/vercel/vercel/releases/tag/vercel%4054.18.1?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/build-utils@13.32.2</span> — @vercel/build-utils now correctly applies per-service function configuration during V2 service builds, fixing an issue where service-level settings like maxDuration and memory were previously ignored. This also fixes collisions in queue consumer groups when multiple services declare the same function path and topic.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/build-utils%4013.32.2?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/python-runtime@0.16.0</span> — Vercel Python runtime now supports WebSockets for WSGI applications like Flask via flask-sock. The runtime exposes the raw socket in the WSGI environ and properly handles the 101 handshake, matching ASGI websocket behavior.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/python-runtime%400.16.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/fs-detectors@6.11.0</span> — @vercel/fs-detectors 6.11.0 migrates service auto-detection to V2 format with improved container detection logic, including support for blessed Dockerfile names and removal of prebuilt OCI image reference entrypoints. The container framework preset is no longer experimental and auto-detection now works without VERCEL_USE_EXPERIMENTAL_FRAMEWORKS.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/fs-detectors%406.11.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/frameworks@3.30.1</span> — @vercel/frameworks v3.30.1 refines container detection for services, removing support for prebuilt OCI image references and standardizing on blessed Dockerfile names (Dockerfile, Containerfile, Dockerfile.vercel, Containerfile.vercel). The container framework preset graduates from experimental status when using the .vercel marker file.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/frameworks%403.30.1?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/container@0.0.3</span> — @vercel/container 0.0.3 refines container detection logic for services, removing support for prebuilt OCI image references as entrypoints. Entrypoints must now explicitly name a Dockerfile/Containerfile, and the container framework preset is no longer experimental.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/container%400.0.3?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
   
   
   <div class="cat">edge</div>
@@ -99,14 +136,11 @@
   
   <div class="cat">frontend</div>
   
+  <div class="item"><span class="h">shadcn/ui</span> <span class="tag">shadcn@4.13.0</span> — shadcn/ui now uses base-ui as the default foundation for components. This represents a shift in the underlying component library used by the project.
+    <a href="https://github.com/shadcn-ui/ui/releases/tag/shadcn%404.13.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
   <div class="item"><span class="h">shadcn/ui</span> <span class="tag">@shadcn/react@0.2.0</span> — @shadcn/react@0.2.0 is a new minor release marking the initial stable release of the @shadcn/react package. This is a significant new addition to the shadcn/ui ecosystem enabling React-based component adoption.
     <a href="https://github.com/shadcn-ui/ui/releases/tag/%40shadcn/react%400.2.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
-  
-  
-  <div class="cat">runtime</div>
-  
-  <div class="item"><span class="h">Deno</span> <span class="tag">v2.9.0</span> — Deno v2.9.0 is a major feature release with significant additions including new CLI subcommands (deno link, deno unlink, deno watch, deno list), desktop app improvements, enhanced testing capabilities (parameterized tests, snapshot testing), CSS module imports, and numerous stability improvements across the runtime. This is a stable release with backwards-compatible new features and deprecation warnings rather than breaking changes.
-    <a href="https://github.com/denoland/deno/releases/tag/v2.9.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
   
   
   <div class="cat">cms</div>
@@ -127,7 +161,16 @@
   
 
   
-  <div class="sec fyi">FYI — patches & minor (99)</div>
+  <div class="sec fyi">FYI — patches & minor (228)</div>
+  
+  <div class="item"><span class="h">Resend</span> <span class="tag">v6.16.0</span> — Resend v6.16.0 adds a new `received_for` field to inbound email and received webhook types. This is a backward-compatible enhancement to the email API&#39;s inbound message handling.
+    <a href="https://github.com/resend/resend-node/releases/tag/v6.16.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Next.js</span> <span class="tag">v16.3.0-canary.76</span> — Next.js v16.3.0-canary.76 is a canary prerelease containing bug fixes and improvements across Server Actions, caching, navigation, and Instant Navigation. This includes fixes for navigation state, cache handling, metadata processing, and various edge cases.
+    <a href="https://github.com/vercel/next.js/releases/tag/v16.3.0-canary.76?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">vercel@54.20.0</span> — Vercel CLI adds new `agent-runs` command suite for observability into Agent Runs with list, inspect, trace, and projects subcommands. Includes JSON output support for machine-readable integration with monitoring tools.
+    <a href="https://github.com/vercel/vercel/releases/tag/vercel%4054.20.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
   <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/xai@4.0.6</span> — This patch release adds experimental streaming transcription support for xAI WebSocket STT and OpenAI&#39;s gpt-realtime-whisper model. It also includes dependency updates to several internal provider packages.
     <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/xai%404.0.6?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
@@ -143,6 +186,96 @@
   
   <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/voyage@2.0.5</span> — This patch release adds experimental streaming transcription support for models like OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. It includes dependency updates to provider packages.
     <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/voyage%402.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/vercel@3.0.5</span> — This patch adds experimental streaming transcription support for transcription models including OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. Dependency versions have been updated accordingly to support the new functionality.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/vercel%403.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/valibot@3.0.5</span> — @ai-sdk/valibot 3.0.5 updates a dependency on @ai-sdk/provider-utils to version 5.0.5. This is a routine patch release with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/valibot%403.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/tui@1.0.14</span> — @ai-sdk/tui@1.0.14 updates the ai dependency to version 7.0.14. This is a routine maintenance release with no user-facing changes or features.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/tui%401.0.14?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/togetherai@3.0.6</span> — Vercel AI SDK&#39;s TogetherAI integration adds experimental streaming transcription support for models like OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. This release includes dependency updates across provider and utility packages.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/togetherai%403.0.6?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/svelte@5.0.14</span> — This is a patch release that updates dependencies for the Vercel AI SDK Svelte integration, including ai@7.0.14 and @ai-sdk/provider-utils@5.0.5. No breaking changes or new features are introduced in this release.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/svelte%405.0.14?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/sandbox-vercel@1.0.17</span> — @ai-sdk/sandbox-vercel 1.0.17 updates internal dependencies including @ai-sdk/provider-utils and @ai-sdk/harness. This is a routine maintenance release with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/sandbox-vercel%401.0.17?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/sandbox-just-bash@1.0.17</span> — Updated internal dependencies (@ai-sdk/provider-utils to 5.0.5 and @ai-sdk/harness to 1.0.17). This is a routine maintenance release with dependency updates.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/sandbox-just-bash%401.0.17?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/rsc@3.0.14</span> — Added experimental streaming transcription support for transcription models including OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. This patch release also updates internal dependencies.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/rsc%403.0.14?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/revai@3.0.5</span> — The @ai-sdk/revai@3.0.5 patch release adds experimental streaming transcription support for models like OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. This is a backward-compatible enhancement with updated provider dependencies.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/revai%403.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/replicate@3.0.6</span> — Vercel AI SDK Replicate provider v3.0.6 adds experimental streaming transcription support for transcription models. This patch updates dependencies to support the new experimental feature.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/replicate%403.0.6?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/react@4.0.15</span> — This patch adds experimental streaming transcription support for transcription models including OpenAI gpt-realtime-whisper and xAI WebSocket STT. Dependency versions are updated across related packages.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/react%404.0.15?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/quiverai@2.0.5</span> — This patch adds experimental streaming transcription support for transcription models, including OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. Dependency updates are included for @ai-sdk/provider and @ai-sdk/provider-utils.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/quiverai%402.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/provider-utils@5.0.5</span> — This patch adds experimental streaming transcription support for transcription models, including OpenAI gpt-realtime-whisper and xAI WebSocket STT. The release updates a dependency on @ai-sdk/provider to 4.0.2.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/provider-utils%405.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/provider@4.0.2</span> — Adds experimental streaming transcription support for transcription models, including OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. This is a patch release introducing new experimental functionality.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/provider%404.0.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/prodia@2.0.6</span> — This patch release adds experimental streaming transcription support for transcription models including OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. Dependency versions have been updated accordingly.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/prodia%402.0.6?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/policy-opa@1.0.14</span> — This patch adds experimental streaming transcription support for transcription models including OpenAI gpt-realtime-whisper and xAI WebSocket STT. The release includes updated dependencies for core packages.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/policy-opa%401.0.14?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/perplexity@4.0.6</span> — This patch adds experimental streaming transcription support for transcription models, including OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. Dependency versions have been updated accordingly.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/perplexity%404.0.6?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/otel@1.0.14</span> — This patch adds experimental streaming transcription support for transcription models, including OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. It also updates dependencies on ai and @ai-sdk/provider packages.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/otel%401.0.14?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/openai-compatible@3.0.5</span> — This patch adds experimental streaming transcription support for transcription models including OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. The feature is marked experimental and includes dependency updates for provider utilities.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/openai-compatible%403.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/openai@4.0.7</span> — @ai-sdk/openai 4.0.7 adds experimental streaming transcription support for OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT models. This patch includes dependency updates to provider packages.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/openai%404.0.7?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/open-responses@2.0.5</span> — Adds experimental streaming transcription support for transcription models including OpenAI gpt-realtime-whisper and xAI WebSocket STT. Includes dependency updates to @ai-sdk/provider and @ai-sdk/provider-utils.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/open-responses%402.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/moonshotai@3.0.7</span> — This patch adds experimental streaming transcription support for transcription models, including OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. Dependency updates are included for @ai-sdk/provider, @ai-sdk/provider-utils, and @ai-sdk/openai-compatible.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/moonshotai%403.0.7?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/mistral@4.0.5</span> — Adds experimental streaming transcription support for transcription models, including OpenAI gpt-realtime-whisper and xAI WebSocket STT. This is a minor version patch that expands the SDK&#39;s capabilities for real-time audio processing without breaking existing functionality.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/mistral%404.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/mcp@2.0.7</span> — This patch release adds experimental streaming transcription support for models like OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. It includes minor dependency updates to align with the new functionality.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/mcp%402.0.7?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/luma@3.0.6</span> — This patch release adds experimental streaming transcription support for transcription models including OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. It includes updates to core provider dependencies.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/luma%403.0.6?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/lmnt@3.0.5</span> — Version 3.0.5 adds experimental streaming transcription support for transcription models including OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. This is a patch release with dependency updates to @ai-sdk/provider and @ai-sdk/provider-utils.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/lmnt%403.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/llamaindex@3.0.14</span> — This patch updates the ai dependency to version 7.0.14. No user-facing changes are documented in this release.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/llamaindex%403.0.14?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/langchain@3.0.14</span> — @ai-sdk/langchain 3.0.14 updates the ai dependency to version 7.0.14. This is a routine patch release with dependency maintenance.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/langchain%403.0.14?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/klingai@4.0.6</span> — This patch adds experimental streaming transcription support for transcription models including OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. It also includes dependency updates to internal provider packages.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/klingai%404.0.6?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/hume@3.0.5</span> — This patch adds experimental streaming transcription support for transcription models including OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. It also updates internal provider dependencies to maintain compatibility.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/hume%403.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
   <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">ai@7.0.14</span> — Added experimental streaming transcription support for transcription models, including OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. This is a new capability that extends the SDK&#39;s transcription functionality with real-time streaming capabilities.
     <a href="https://github.com/vercel/ai/releases/tag/ai%407.0.14?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
@@ -165,8 +298,53 @@
   <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/vue@4.0.13</span> — Vercel AI SDK Vue package 4.0.13 includes a patch version bump to the core ai package (7.0.13). This is a routine maintenance release with dependency updates.
     <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/vue%404.0.13?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/tui@1.0.13</span> — @ai-sdk/tui@1.0.13 patches a dependency with ai@7.0.13. This is a routine maintenance release with no user-facing changes documented.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/tui%401.0.13?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
   <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/vue@2.0.210</span> — @ai-sdk/vue@2.0.210 patches a dependency update to ai@5.0.210. This is a routine maintenance release with no breaking changes or new features.
     <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/vue%402.0.210?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/svelte@3.0.210</span> — @ai-sdk/svelte version 3.0.210 includes a patch update to the core ai package. This is a routine maintenance release with no breaking changes or new features.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/svelte%403.0.210?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/svelte@5.0.13</span> — @ai-sdk/svelte 5.0.13 is a patch release that updates the dependency ai package to version 7.0.13. This is a routine maintenance update with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/svelte%405.0.13?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/rsc@1.0.212</span> — @ai-sdk/rsc version 1.0.212 includes a patch update to the ai dependency (5.0.210). This is a routine maintenance release with no breaking changes or new features.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/rsc%401.0.212?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/sandbox-vercel@1.0.16</span> — Version 1.0.16 of @ai-sdk/sandbox-vercel includes a patch-level dependency update to @ai-sdk/harness@1.0.16. No user-facing changes are documented in this release.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/sandbox-vercel%401.0.16?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/react@2.0.212</span> — Version 2.0.212 of @ai-sdk/react updates its dependency on ai to version 5.0.210. This is a routine maintenance update with no new features or breaking changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/react%402.0.212?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/sandbox-just-bash@1.0.16</span> — This is a patch release of @ai-sdk/sandbox-just-bash that updates a dependency (@ai-sdk/harness) to version 1.0.16. No breaking changes or new features are documented.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/sandbox-just-bash%401.0.16?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/rsc@3.0.13</span> — @ai-sdk/rsc@3.0.13 is a patch release that includes a dependency update to ai@7.0.13. This is a routine maintenance release with no breaking changes or new features.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/rsc%403.0.13?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/llamaindex@1.0.210</span> — This is a patch release of @ai-sdk/llamaindex that bumps the underlying ai package dependency to 5.0.210. No functional changes or breaking modifications are documented.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/llamaindex%401.0.210?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/langchain@1.0.210</span> — Patch release 1.0.210 of @ai-sdk/langchain updates the peer dependency on ai to 5.0.210. This is a routine maintenance update with no breaking changes or notable features.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/langchain%401.0.210?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/react@4.0.14</span> — @ai-sdk/react@4.0.14 includes a patch update to the ai@7.0.13 dependency. This is a routine dependency maintenance release with no breaking changes or new features.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/react%404.0.14?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/policy-opa@1.0.13</span> — @ai-sdk/policy-opa 1.0.13 updates the ai dependency to version 7.0.13. This is a routine maintenance release with no user-facing changes noted.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/policy-opa%401.0.13?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/otel@1.0.13</span> — @ai-sdk/otel@1.0.13 is a patch release that updates the ai dependency to version 7.0.13. This is a routine maintenance release with no new features or breaking changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/otel%401.0.13?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/llamaindex@3.0.13</span> — Version 3.0.13 of the LlamaIndex integration for Vercel AI SDK is released with a patch update to the core ai package (7.0.13). This is a routine maintenance release with dependency updates.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/llamaindex%403.0.13?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/langchain@3.0.13</span> — @ai-sdk/langchain version 3.0.13 was released with a patch update to the ai package (7.0.13). This is a routine maintenance release with no user-facing feature changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/langchain%403.0.13?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
   <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">ai@5.0.210</span> — Vercel AI SDK v5.0.210 updates the @ai-sdk/gateway dependency to v2.0.109. This is a routine dependency update with no user-facing changes.
     <a href="https://github.com/vercel/ai/releases/tag/ai%405.0.210?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
@@ -176,6 +354,24 @@
   
   <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/vue@3.0.219</span> — @ai-sdk/vue version 3.0.219 was released as a patch update. This release includes a dependency bump to ai@6.0.219.
     <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/vue%403.0.219?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/svelte@4.0.219</span> — @ai-sdk/svelte version 4.0.219 updates the ai dependency to 6.0.219. This is a routine patch release that maintains compatibility while updating internal dependencies.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/svelte%404.0.219?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/rsc@2.0.219</span> — @ai-sdk/rsc@2.0.219 released with a patch dependency update to ai@6.0.219. This is a routine maintenance release with no new features or breaking changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/rsc%402.0.219?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/react@3.0.221</span> — Vercel AI SDK React package updated to version 3.0.221 with a dependency bump to ai@6.0.219. This is a routine patch release with no breaking changes or new features.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/react%403.0.221?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/mcp@1.0.58</span> — The MCP SDK now exposes a JSON-RPC message validator, providing developers with a utility to validate protocol messages. This is a minor enhancement that doesn&#39;t affect existing functionality.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/mcp%401.0.58?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/llamaindex@2.0.219</span> — Version @ai-sdk/llamaindex@2.0.219 includes a patch update to the core ai package (6.0.219). This is a routine maintenance release with no breaking changes or new features.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/llamaindex%402.0.219?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/langchain@2.0.227</span> — @ai-sdk/langchain@2.0.227 updates the ai dependency to v6.0.219. This is a routine patch release with dependency updates.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/langchain%402.0.227?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
   <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">ai@6.0.219</span> — This release updates the @ai-sdk/gateway dependency to version 3.0.143. It&#39;s a routine maintenance update with no breaking changes, new features, or security fixes.
     <a href="https://github.com/vercel/ai/releases/tag/ai%406.0.219?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
@@ -195,6 +391,87 @@
   
   <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/voyage@2.0.4</span> — @ai-sdk/voyage@2.0.4 updates a dependency on @ai-sdk/provider-utils to version 5.0.4. This is a routine maintenance patch with no user-facing changes.
     <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/voyage%402.0.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/vercel@3.0.4</span> — Vercel AI SDK 3.0.4 updates internal dependencies for provider utilities and OpenAI-compatible integration. No breaking changes or new features in this patch release.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/vercel%403.0.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/valibot@3.0.4</span> — @ai-sdk/valibot 3.0.4 updates a dependency on @ai-sdk/provider-utils to version 5.0.4. This is a routine maintenance release with no breaking changes or new features.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/valibot%403.0.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/tui@1.0.12</span> — @ai-sdk/tui@1.0.12 updates dependencies to align with ai@7.0.12. This is a routine patch release with dependency updates.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/tui%401.0.12?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/togetherai@3.0.5</span> — Dependency updates to @ai-sdk/provider-utils and @ai-sdk/openai-compatible. No user-facing changes or breaking modifications in this patch release.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/togetherai%403.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/svelte@5.0.12</span> — @ai-sdk/svelte 5.0.12 updates dependencies including ai@7.0.12 and @ai-sdk/provider-utils@5.0.4. This is a maintenance release with no breaking changes or new features.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/svelte%405.0.12?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/sandbox-vercel@1.0.15</span> — Vercel AI SDK sandbox updated internal dependencies (@ai-sdk/provider-utils to 5.0.4 and @ai-sdk/harness to 1.0.15). This is a routine maintenance release with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/sandbox-vercel%401.0.15?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/sandbox-just-bash@1.0.15</span> — @ai-sdk/sandbox-just-bash v1.0.15 updates internal dependencies including @ai-sdk/provider-utils and @ai-sdk/harness. This is a routine maintenance release with no breaking changes or new features.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/sandbox-just-bash%401.0.15?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/rsc@3.0.12</span> — This is a patch release for @ai-sdk/rsc that updates dependencies, including ai@7.0.12 and @ai-sdk/provider-utils@5.0.4. No breaking changes, new features, or security issues are introduced.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/rsc%403.0.12?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/revai@3.0.4</span> — The @ai-sdk/revai package has been updated to version 3.0.4 with a dependency bump to @ai-sdk/provider-utils@5.0.4. This is a routine maintenance release with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/revai%403.0.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/replicate@3.0.5</span> — @ai-sdk/replicate@3.0.5 updates the @ai-sdk/provider-utils dependency to version 5.0.4. This is a routine patch release with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/replicate%403.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/react@4.0.13</span> — @ai-sdk/react@4.0.13 updates internal dependencies including ai@7.0.12, @ai-sdk/provider-utils@5.0.4, and @ai-sdk/mcp@2.0.6. This patch release contains no user-facing changes, only dependency updates.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/react%404.0.13?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/quiverai@2.0.4</span> — @ai-sdk/quiverai 2.0.4 updates its dependency on @ai-sdk/provider-utils to version 5.0.4. This is a routine maintenance release with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/quiverai%402.0.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/prodia@2.0.5</span> — @ai-sdk/prodia 2.0.5 updates the @ai-sdk/provider-utils dependency to version 5.0.4. This is a routine dependency maintenance release with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/prodia%402.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/policy-opa@1.0.12</span> — @ai-sdk/policy-opa@1.0.12 updates internal dependencies including ai@7.0.12 and @ai-sdk/provider-utils@5.0.4. This is a routine maintenance release with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/policy-opa%401.0.12?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/perplexity@4.0.5</span> — @ai-sdk/perplexity 4.0.5 updates the @ai-sdk/provider-utils dependency to version 5.0.4. This is a routine dependency maintenance release with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/perplexity%404.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/otel@1.0.12</span> — @ai-sdk/otel@1.0.12 updates dependencies including ai@7.0.12. This is a routine patch release with dependency maintenance.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/otel%401.0.12?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/openai-compatible@3.0.4</span> — @ai-sdk/openai-compatible@3.0.4 updates a dependency on @ai-sdk/provider-utils to version 5.0.4. This is a routine maintenance release with no user-facing changes documented.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/openai-compatible%403.0.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/openai@4.0.6</span> — Vercel AI SDK OpenAI provider updated a dependency on provider-utils to version 5.0.4. This is a routine maintenance update with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/openai%404.0.6?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/open-responses@2.0.4</span> — @ai-sdk/open-responses@2.0.4 updates internal dependencies to @ai-sdk/provider-utils@5.0.4. This is a routine maintenance release with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/open-responses%402.0.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/moonshotai@3.0.6</span> — This release updates internal dependencies for the Moonshotai provider integration. No user-facing changes or new features are included.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/moonshotai%403.0.6?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/mistral@4.0.4</span> — @ai-sdk/mistral 4.0.4 updates the @ai-sdk/provider-utils dependency to version 5.0.4. This is a routine maintenance release with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/mistral%404.0.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/mcp@2.0.6</span> — @ai-sdk/mcp@2.0.6 exposes a JSON-RPC message validator and updates provider utilities dependencies. This is a minor maintenance release with incremental improvements to the MCP implementation.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/mcp%402.0.6?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/luma@3.0.5</span> — @ai-sdk/luma v3.0.5 updates the @ai-sdk/provider-utils dependency to v5.0.4. This is a routine patch release with no breaking changes or new features.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/luma%403.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/lmnt@3.0.4</span> — @ai-sdk/lmnt 3.0.4 patches a dependency update to @ai-sdk/provider-utils 5.0.4. This is a routine maintenance release with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/lmnt%403.0.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/llamaindex@3.0.12</span> — Updated @ai-sdk/llamaindex to sync with ai@7.0.12 patch release. No user-facing changes or API modifications in this release.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/llamaindex%403.0.12?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/langchain@3.0.12</span> — The @ai-sdk/langchain package was updated to version 3.0.12 with dependency updates to the ai package (v7.0.12). This is a routine patch release with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/langchain%403.0.12?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/klingai@4.0.5</span> — @ai-sdk/klingai 4.0.5 updates the @ai-sdk/provider-utils dependency to 5.0.4. This is a routine maintenance release with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/klingai%404.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
   <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">ai@7.0.12</span> — Vercel AI SDK 7.0.12 includes a patch to sort tool results by their tool call order during generation output conversion and fixes an issue where extractJsonMiddleware was preserving unnecessary leading whitespace in streamed text. These are routine bug fixes with no API changes.
     <a href="https://github.com/vercel/ai/releases/tag/ai%407.0.12?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
@@ -226,6 +503,9 @@
   
   <div class="item"><span class="h">Stripe</span> <span class="tag">v22.4.0-alpha.2</span> — v22.4.0-alpha.2 updates the pinned API version to 2026-07-01.preview and adds support for new crypto payment resources, redaction capabilities across multiple resources, and additional payment method options. This is a prerelease alpha version with feature additions and minor breaking changes limited to preview APIs.
     <a href="https://github.com/stripe/stripe-node/releases/tag/v22.4.0-alpha.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/perplexity@3.0.42</span> — Fixed perplexityChunkSchema to correctly handle optional role and nullish content fields in streaming chunks. This resolves validation issues when processing streaming responses from the Perplexity API.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/perplexity%403.0.42?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
   <div class="item"><span class="h">Anthropic SDK</span> <span class="tag">sdk-v0.109.1</span> — The Anthropic SDK v0.109.1 removes some nonfunctional types from the SDKs. This is a minor maintenance release with no breaking changes or new features.
     <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.109.1?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
@@ -302,26 +582,71 @@
   <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/astro@3.4.11</span> — @clerk/astro@3.4.11 updates the @clerk/backend dependency to version 3.10.0. This is a routine dependency maintenance release with no user-facing changes.
     <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/astro%403.4.11?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
+  <div class="item"><span class="h">Railway</span> <span class="tag">v5.23.3</span> — Railway v5.23.3 updates audited dependencies to address security concerns. This is a routine patch release with dependency maintenance.
+    <a href="https://github.com/railwayapp/cli/releases/tag/v5.23.3?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
   <div class="item"><span class="h">Anthropic SDK</span> <span class="tag">sdk-v0.109.0</span> — SDK v0.109.0 adds support for Managed Agents event delta streaming, agent overrides, reverse pagination, and webhook events. These are additive feature capabilities with no breaking changes to existing APIs.
     <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.109.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/clerk-js@6.23.0</span> — @clerk/clerk-js 6.23.0 adds a new account credits section and credit history page to the billing tab for users with existing credit balances. The release also includes bug fixes for OAuth callback handling and internal refactoring with no public API changes.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/clerk-js%406.23.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/chrome-extension@3.1.46</span> — @clerk/chrome-extension@3.1.46 is a patch release that updates internal dependencies including clerk-js, shared, ui, and react packages. No breaking changes or new features are introduced.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/chrome-extension%403.1.46?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/astro@3.4.10</span> — This is a patch release of @clerk/astro that updates internal dependencies to newer versions of @clerk/backend and @clerk/shared. No user-facing changes or new features are included in this release.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/astro%403.4.10?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/localizations@4.12.0</span> — @clerk/localizations@4.12.0 adds account credits section and credit history page to the billing tab for users with existing credit balances. This is a minor feature addition that maintains backward compatibility and does not require immediate action.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/localizations%404.12.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/electron@0.0.7</span> — @clerk/electron@0.0.7 updates dependencies including @clerk/clerk-js, @clerk/shared, and @clerk/react to newer patch/minor versions. This is a routine dependency maintenance release with no breaking changes or new features.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/electron%400.0.7?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
   <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/tanstack-react-start@1.4.11</span> — This is a patch release that updates internal dependencies to @clerk/backend@3.9.0, @clerk/shared@4.23.0, and @clerk/react@6.11.3. No breaking changes or new features are introduced in this release.
     <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/tanstack-react-start%401.4.11?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/fastify@3.1.44</span> — @clerk/fastify@3.1.44 is a patch release that updates internal dependencies, including @clerk/backend@3.9.0 and @clerk/shared@4.23.0. No breaking changes or new features are introduced in this release.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/fastify%403.1.44?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/backend@3.9.0</span> — @clerk/backend@3.9.0 adds a new OAuth token revocation method and improves validation for organization deletion. This is a minor version update with a new stable feature and quality-of-life improvements.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/backend%403.9.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/express@2.1.34</span> — @clerk/express@2.1.34 updates internal dependencies including @clerk/backend and @clerk/shared. This is a routine patch release with dependency updates only.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/express%402.1.34?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
   <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/testing@2.2.1</span> — @clerk/testing@2.2.1 updates internal dependencies (@clerk/backend and @clerk/shared) to their latest patches. This is a routine maintenance release with no breaking changes or new features.
     <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/testing%402.2.1?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/react-router@3.5.3</span> — @clerk/react-router@3.5.3 updates dependencies including @clerk/backend, @clerk/shared, and @clerk/react to newer versions. This patch release includes no user-facing changes or breaking modifications.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/react-router%403.5.3?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
   <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/vue@2.4.10</span> — @clerk/vue version 2.4.10 updates internal dependencies to @clerk/shared@4.23.0. This is a standard maintenance release with no user-facing changes.
     <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/vue%402.4.10?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/nextjs@7.5.11</span> — @clerk/nextjs@7.5.11 updates internal dependencies to their latest patch and minor versions. This is a routine maintenance release that brings in updates from @clerk/backend@3.9.0, @clerk/shared@4.23.0, and @clerk/react@6.11.3.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/nextjs%407.5.11?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
   <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/ui@1.24.0</span> — @clerk/ui v1.24.0 adds an account credits section and credit history page to the billing tab for payers with existing credit balances. This minor release also includes a patch fix for UserButton session actions alignment and routine dependency updates.
     <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/ui%401.24.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/nuxt@2.6.10</span> — Clerk Nuxt v2.6.10 updates dependencies including backend, shared, and Vue packages. This patch release includes no user-facing changes, only internal dependency updates.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/nuxt%402.6.10?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
   <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/react@6.11.3</span> — @clerk/react 6.11.3 updates the @clerk/shared dependency to 4.23.0. This is a routine patch release with internal dependency updates and no user-facing changes.
     <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/react%406.11.3?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/expo-passkeys@1.1.12</span> — @clerk/expo-passkeys@1.1.12 updates internal dependencies to @clerk/shared@4.23.0. This is a routine maintenance release with no breaking changes or new features.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/expo-passkeys%401.1.12?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/hono@0.1.44</span> — @clerk/hono@0.1.44 updates internal dependencies including @clerk/backend@3.9.0 and @clerk/shared@4.23.0. This is a routine dependency bump with no user-facing changes.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/hono%400.1.44?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
   <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/shared@4.23.0</span> — Clerk shared 4.23.0 adds a new account credits section and credit history page to the billing tab for users with existing credit balances. It also includes a patch fix for native OAuth transport handling in combined sign-in-or-up flows.
     <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/shared%404.23.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/expo@3.6.4</span> — @clerk/expo@3.6.4 updates internal dependencies including @clerk/clerk-js, @clerk/shared, and @clerk/react to their latest patch and minor versions. This is a routine dependency maintenance release with no user-facing changes highlighted.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/expo%403.6.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
   <div class="item"><span class="h">Anthropic SDK</span> <span class="tag">aws-sdk-v0.6.0</span> — aws-sdk v0.6.0 adds support for passing a client logger to the AWS credential provider chain in Bedrock. This is a minor enhancement that improves logging capabilities during AWS authentication without affecting existing functionality.
     <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/aws-sdk-v0.6.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
@@ -368,17 +693,47 @@
   <div class="item"><span class="h">Vercel</span> <span class="tag">vercel@54.18.5</span> — Vercel CLI&#39;s `vc logs` command now exposes a `cacheReason` field alongside cache status to help developers understand why requests were cache MISS, BYPASS, or STALE. This is a small observability improvement with no breaking changes.
     <a href="https://github.com/vercel/vercel/releases/tag/vercel%4054.18.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
+  <div class="item"><span class="h">Railway</span> <span class="tag">v5.23.2</span> — This release fixes a bug in the authentication system where concurrent token refresh attempts could cause unintended logouts. The fix serializes token refresh to prevent race conditions.
+    <a href="https://github.com/railwayapp/cli/releases/tag/v5.23.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
   <div class="item"><span class="h">Better Auth</span> <span class="tag">v1.6.23</span> — Better Auth v1.6.23 adds Yandex OAuth provider support and fixes several bugs in the drizzle adapter, stripe integration, and CLI schema generation. This is a routine maintenance release with minor improvements and bug fixes across multiple packages.
     <a href="https://github.com/better-auth/better-auth/releases/tag/v1.6.23?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
   <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/passport@0.1.2</span> — @vercel/passport 0.1.2 fixes how the Passport cookie is read from Vercel request context headers. This is a maintenance update to an internal authentication utility with no breaking changes or new features.
     <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/passport%400.1.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/fs-detectors@6.11.4</span> — @vercel/fs-detectors@6.11.4 updates dependencies, specifically @vercel/frameworks to version 3.30.3. This is a routine maintenance release with no user-facing changes.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/fs-detectors%406.11.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/frameworks@3.30.3</span> — This patch release adds a services logo to the @vercel/frameworks package. No functional changes or breaking modifications are introduced.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/frameworks%403.30.3?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/expo@3.6.3</span> — Clerk Expo SDK 3.6.3 contains bug fixes for session restoration, native headers, and clarifications for Google Sign-In migration. No breaking changes or new features in this patch release.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/expo%403.6.3?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/ui@1.23.1</span> — @clerk/ui@1.23.1 patches a redirect URL protocol validation bug in browser navigations and fixes UserProfile to display sign-in-enabled attributes. This is a routine maintenance release with dependency updates.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/ui%401.23.1?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/shared@4.22.1</span> — This patch fixes missing redirect URL protocol validation in Clerk UI browser navigations and the multi-session add-account flow. The fix ensures internal browser navigations consistently honor configured redirect protocols across different ClerkJS/UI bundle versions.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/shared%404.22.1?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
   <div class="item"><span class="h">Inngest</span> <span class="tag">v1.34.0</span> — Inngest v1.34.0 is a maintenance release with bug fixes for rerun-from-step functionality, custom concurrency cache keys, and extended traces display. It includes minor features like search on the sessions route and UI improvements across the dashboard.
     <a href="https://github.com/inngest/inngest/releases/tag/v1.34.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
   <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/next@4.20.2</span> — @vercel/next 4.20.2 adds support for stable Cache Components without requiring experimental PPR (Partial Pre-Rendering). This is a routine patch that expands cache component functionality to work in more configurations.
     <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/next%404.20.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/fs-detectors@6.11.3</span> — This patch updates service name validation for the @vercel/fs-detectors package to align with platform schema requirements. It includes a dependency bump to @vercel/frameworks@3.30.2.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/fs-detectors%406.11.3?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/frameworks@3.30.2</span> — This patch updates the Container framework logo to use the Box icon. No functional changes or breaking updates are included in this release.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/frameworks%403.30.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/container@0.0.4</span> — @vercel/container 0.0.4 fixes multiple issues with `vercel dev` for container framework support, including proper Dockerfile detection, error handling, and container reuse across requests. These are bug fixes to pre-release tooling that improve developer experience and fix broken functionality.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/container%400.0.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/connect@0.3.0</span> — @vercel/connect@0.3.0 adds a new `@vercel/connect/chat` subpath with adapter helpers for the Chat SDK, providing configuration fragments for Slack, GitHub, and Linear adapters with Connect connector support. This is a standard minor version feature addition with no breaking changes or security implications.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/connect%400.3.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
   <div class="item"><span class="h">Vercel</span> <span class="tag">vercel@54.18.3</span> — vercel@54.18.3 fixes several bugs in `vercel dev` for container framework builds, including Docker daemon detection, container reuse across requests, and Dockerfile discovery. Service name validation has also been aligned with platform schema.
     <a href="https://github.com/vercel/vercel/releases/tag/vercel%4054.18.3?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
@@ -390,14 +745,92 @@
 &lt;parameter name=&#34;action_line&#34;&gt;
     <a href="https://github.com/tailwindlabs/tailwindcss/releases/tag/v4.3.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/fs-detectors@6.11.2</span> — This patch fixes an issue with bare static service builds where services containing only a &#39;root&#39; configuration now correctly resolve at @vercel/static. It&#39;s a targeted bug fix with no breaking changes or new features.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/fs-detectors%406.11.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">vercel@54.18.2</span> — This patch fixes bare static service builds and allows services with only a &#39;root&#39; configuration to resolve at @vercel/static. It&#39;s a targeted bug fix with no breaking changes or new features.
+    <a href="https://github.com/vercel/vercel/releases/tag/vercel%4054.18.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
   <div class="item"><span class="h">PocketBase</span> <span class="tag">v0.39.5</span> — PocketBase v0.39.5 includes UI improvements for long URL field values, reintroduced the fullscreen editor option with faster TinyMCE rendering, and updated the goja dependency with TypedArray fixes. These are minor enhancements and bug fixes with no breaking changes or significant API modifications.
     <a href="https://github.com/pocketbase/pocketbase/releases/tag/v0.39.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/static-build@2.11.4</span> — Vercel&#39;s static-build package released a patch version 2.11.4 with a dependency bump to the gatsby-plugin-vercel-builder. This is a routine maintenance update with no breaking changes or new features.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/static-build%402.11.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/node@5.8.22</span> — @vercel/node@5.8.22 updates a dependency on @vercel/build-utils to version 13.32.2. This is a routine dependency maintenance release with no user-facing changes or breaking modifications.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/node%405.8.22?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/nestjs@0.2.102</span> — This release updates @vercel/node to version 5.8.22, a patch dependency bump for the NestJS Vercel integration. No breaking changes or new features are indicated in the release notes.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/nestjs%400.2.102?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/koa@0.1.81</span> — @vercel/koa@0.1.81 is a patch release with an updated dependency on @vercel/node@5.8.22. No breaking changes, features, or notable updates are included in this release.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/koa%400.1.81?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/hono@0.2.101</span> — @vercel/hono@0.2.101 includes a patch update to @vercel/node@5.8.22. This is a routine dependency bump with no breaking changes or notable features.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/hono%400.2.101?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/h3@0.1.107</span> — @vercel/h3 v0.1.107 released with a patch update to @vercel/node dependency (v5.8.22). This is a routine maintenance release with no user-facing changes documented.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/h3%400.1.107?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/gatsby-plugin-vercel-builder@2.2.24</span> — @vercel/gatsby-plugin-vercel-builder@2.2.24 updates its dependency on @vercel/build-utils to version 13.32.2. This is a routine maintenance release with no breaking changes or new features.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/gatsby-plugin-vercel-builder%402.2.24?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/fs-detectors@6.11.1</span> — @vercel/fs-detectors@6.11.1 is a patch release that updates the @vercel/build-utils dependency to version 13.32.2. This is a routine dependency maintenance update with no user-facing changes.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/fs-detectors%406.11.1?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/fastify@0.1.101</span> — @vercel/fastify 0.1.101 updates a dependency on @vercel/node to version 5.8.22. This is a routine patch release with no breaking changes or new features.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/fastify%400.1.101?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/express@0.1.111</span> — @vercel/express@0.1.111 updates internal dependencies, including @vercel/node to 5.8.22 and @vercel/cervel to 0.1.28. This is a routine patch release with no breaking changes or new features.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/express%400.1.111?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/elysia@0.1.98</span> — @vercel/elysia@0.1.98 is a patch release that bumps the @vercel/node dependency to version 5.8.22. This is a routine dependency update with no user-facing changes or breaking modifications.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/elysia%400.1.98?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/client@17.6.3</span> — @vercel/client v17.6.3 updates a dependency on @vercel/build-utils to v13.32.2. This is a routine patch release with no user-facing changes.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/client%4017.6.3?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/cervel@0.1.28</span> — @vercel/cervel@0.1.28 includes a patch update to @vercel/backends@0.8.20. This is a routine dependency bump with no user-facing changes.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/cervel%400.1.28?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/backends@0.8.20</span> — @vercel/backends@0.8.20 updates the @vercel/build-utils dependency to version 13.32.2. This is a routine dependency bump with no user-facing changes.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/backends%400.8.20?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
   <div class="item"><span class="h">Drizzle ORM</span> <span class="tag">v1.0.0-rc.4</span> — v1.0.0-rc.4 is a prerelease candidate with numerous bug fixes, codec system improvements, and internal refactoring across SQLite, MySQL, and PostgreSQL drivers. While the release includes breaking changes (RQBv1 removal, method removals from PreparedQuery), these are acceptable in a prerelease channel.
     <a href="https://github.com/drizzle-team/drizzle-orm/releases/tag/v1.0.0-rc.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
   <div class="item"><span class="h">Better Auth</span> <span class="tag">v1.7.0-rc.0</span> — v1.7.0-rc.0 is a prerelease containing multiple breaking changes to captcha matching, MCP package structure, OAuth provider OIDC support, and OAuth resource models. Since this is a release candidate in the prerelease channel, it does not require immediate action before next deploy.
     <a href="https://github.com/better-auth/better-auth/releases/tag/v1.7.0-rc.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/python@6.47.3</span> — @vercel/python@6.47.3 simplifies how isolated services and experimentalServicesV2 emit their function outputs, moving them from the nested _svc/&lt;service-name&gt;/index path to the simpler index location. This is a minor internal simplification with no user-facing API changes.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/python%406.47.3?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/oidc-aws-credentials-provider@3.2.1</span> — @vercel/oidc-aws-credentials-provider@3.2.1 updates its dependency on @vercel/oidc to version 3.7.1. This patch release includes only dependency updates with no direct changes to the package&#39;s functionality.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/oidc-aws-credentials-provider%403.2.1?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/oidc@3.7.1</span> — The `getVercelOidcTokenSync` method is now deprecated in favor of the async `getVercelOidcToken` alternative. Users should migrate to the async version at their convenience with no immediate deadline.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/oidc%403.7.1?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/go@3.10.2</span> — @vercel/go@3.10.2 simplifies the runtime output structure for isolated services and experimentalServicesV2 by emitting function outputs at `index` instead of `_svc/&lt;service-name&gt;/index`. This is a targeted internal refinement with no breaking changes to the public API.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/go%403.10.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/functions@3.7.4</span> — @vercel/functions 3.7.4 updates internal dependency @vercel/oidc to 3.7.1. This is a routine maintenance release with no user-facing changes or new functionality.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/functions%403.7.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/express@0.1.110</span> — @vercel/express 0.1.110 updates internal dependencies, bumping @vercel/cervel to 0.1.27 and @vercel/node to 5.8.21. These are routine patch updates to support libraries with no breaking changes indicated.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/express%400.1.110?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/connect@0.2.10</span> — @vercel/connect@0.2.10 improves OAuth and connector provisioning by passing eve authorization webhooks through to Vercel Connect and adding automatic first-use connector provisioning to the connect() helper. These are incremental improvements to internal workflows without breaking changes to the public API.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/connect%400.2.10?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">vercel@54.18.0</span> — Vercel CLI 54.18.0 introduces auto-detection migration to V2 format, WebSocket support for WSGI apps, and enhancements to the flags command. This release includes bug fixes for CLI update notifications and various quality-of-life improvements to command-line tooling.
+    <a href="https://github.com/vercel/vercel/releases/tag/vercel%4054.18.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/cervel@0.1.27</span> — @vercel/cervel@0.1.27 updates internal dependencies, specifically bumping @vercel/backends to 0.8.19. This is a routine maintenance release with no user-facing changes.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/cervel%400.1.27?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/aws@0.2.6</span> — @vercel/aws version 0.2.6 is a routine patch release that updates the @vercel/oidc-aws-credentials-provider dependency. This is a standard maintenance update with no user-facing changes or breaking modifications.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/aws%400.2.6?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
   <div class="item"><span class="h">shadcn/ui</span> <span class="tag">shadcn@4.12.0</span> — shadcn/ui 4.12.0 adds scroll-fade and shimmer utility components for enhancing UI animations and effects. This is a backwards-compatible minor release with new optional utilities for developers to use.
     <a href="https://github.com/shadcn-ui/ui/releases/tag/shadcn%404.12.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
@@ -414,25 +847,13 @@
   <div class="item"><span class="h">shadcn/ui</span> <span class="tag">shadcn@4.11.1</span> — shadcn/ui 4.11.1 replaces node-fetch with native fetch and fixes dependency handling in the `shadcn add` command. These are minor improvements to internal implementation and tooling behavior.
     <a href="https://github.com/shadcn-ui/ui/releases/tag/shadcn%404.11.1?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
-  <div class="item"><span class="h">Next.js</span> <span class="tag">v16.3.0-preview.5</span> — Next.js v16.3.0-preview.5 is a preview release containing miscellaneous bug fixes, documentation updates, and internal improvements. This includes fixes for local fonts in ImageResponse, prefetch behavior, ServiceWorker compilation, and various dev tooling enhancements.
-    <a href="https://github.com/vercel/next.js/releases/tag/v16.3.0-preview.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
-  
-  <div class="item"><span class="h">Inngest</span> <span class="tag">v1.33.1-test.3</span> — This is a prerelease test build of Inngest v1.33.1. No functional changes or features are documented in these release notes.
-    <a href="https://github.com/inngest/inngest/releases/tag/v1.33.1-test.3?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
-  
-  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">@cloudflare/vitest-pool-workers@0.16.20</span> — Adds `evictDurableObject` and `evictAllDurableObjects` test helpers to the `cloudflare:test` module, enabling developers to test how Durable Objects behave during eviction scenarios. Also fixes SQL escaping issues in D1 migration commands for table names and filenames containing special characters.
-    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/%40cloudflare/vitest-pool-workers%400.16.20?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
-  
-  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">miniflare@4.20260625.0</span> — Miniflare 4.20260625.0 updates the workerd dependency from 1.20260623.1 to 1.20260625.1. This is a routine dependency bump with no user-facing changes announced.
-    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/miniflare%404.20260625.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
-  
-  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">wrangler@4.105.0</span> — wrangler@4.105.0 adds Google Artifact Registry support to container registries configuration and includes several bug fixes. The release contains a new minor feature for GAR integration, dependency updates, and fixes for D1 migration SQL escaping and Dockerfile digest pinning.
-    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/wrangler%404.105.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/expo@3.6.2</span> — @clerk/expo@3.6.2 updates the bundled clerk-ios SDK from 1.2.5 to 1.2.6. This is a routine dependency bump in a stable patch release with no breaking changes or feature additions.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/expo%403.6.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
   
   
 
   <div class="foot">
-    StackTrace Weekly · AI-classified against a <a href="https://stacktrace-site.vercel.app/rubric.html">published rubric</a> ·
+    StackTrace Weekly · AI-classified against a <a href="https://stacktrace-web.vercel.app/rubric.html">published rubric</a> ·
     <a href="https://stacktraceweekly.beehiiv.com/subscribe">subscribe</a>
   </div>
 </div>
