@@ -258,8 +258,8 @@ export default function Landing() {
             <div className="top">
               <div style={{ maxWidth: 640 }}>
                 <div className="tag"><span className="sq" />CRITICAL, {s.critical.tool} {s.critical.version}</div>
-                <div className="hl">A data-loss fix your production stack has to ship today.</div>
-                <p className="p">A bug in <span className="mono" style={{ fontSize: 14 }}>@liveblocks/client</span> could overwrite room storage on large WebSocket messages. Open the full issue: {s.critCount} critical, {s.notableCount} notable, +{s.fyiCount} collapsed.</p>
+                <div className="hl">The critical fix your production stack cannot skip this week.</div>
+                <p className="p">{s.critical.summary} Open the full issue: {s.critCount} critical, {s.notableCount} notable, +{s.fyiCount} collapsed.</p>
               </div>
               <span className="open">OPEN FULL ISSUE →</span>
             </div>

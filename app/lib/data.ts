@@ -1,24 +1,6 @@
-// Landing content. The weekly pipeline overwrites this file (see stacktrace-weekly
-// pipeline) so the numbers, sample issue, and archive stay fresh. No em-dashes.
-export interface Sample {
-  tool: string;
-  version: string;
-  summary: string;
-  action?: string;
-}
-export interface SiteData {
-  issueNo: number;
-  issueDate: string; // e.g. "JUN 30 2026"
-  totalChanges: number;
-  critCount: number;
-  notableCount: number;
-  fyiCount: number;
-  subscribeUrl: string;
-  critical: Sample;
-  notable: Sample[];
-  feed: { name: string; version: string; tier: "crit" | "not" | "fyi" }[];
-  tools: string[];
-}
+// Curated launch content (Issue #1). The weekly pipeline overwrites this file via
+// publish.write_next_data so numbers/sample/archive stay fresh. No em-dashes.
+import type { SiteData } from "./types";
 
 export const site: SiteData = {
   issueNo: 1,
