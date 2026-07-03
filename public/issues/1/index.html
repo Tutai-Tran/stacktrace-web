@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StackTrace Weekly · Issue #1</title>
+<meta name="description" content="Developer tool changelogs for 2026-07-03, AI-classified by severity: 1 critical, 17 notable.">
+<link rel="canonical" href="https://stacktrace-site.vercel.app/issues/1/">
+<style>
+  :root{--fg:#1a1a1a;--muted:#666;--crit:#b00020;--note:#996a00;--rule:#eee}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--fg);line-height:1.55;background:#fafafa}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px 80px}
+  header{padding:32px 0 20px;border-bottom:2px solid #111;margin-bottom:8px}
+  h1{font-size:26px;letter-spacing:-0.02em;margin:0}
+  .sub{color:var(--muted);font-size:14px;margin-top:4px}
+  .sec{margin:32px 0 6px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .sec.crit{color:var(--crit)} .sec.note{color:var(--note)} .sec.fyi{color:#555}
+  .item{padding:10px 0;border-bottom:1px solid var(--rule)}
+  .item .h{font-weight:700} .item .tag{color:#888;font-weight:500}
+  .item.crit{border-left:3px solid var(--crit);padding-left:14px}
+  .cat{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;margin:18px 0 2px}
+  .act{font-size:13px;background:#fff4f4;padding:8px 10px;border-radius:4px;margin-top:6px}
+  a{color:#0645ad;text-decoration:none} a:hover{text-decoration:underline}
+  .foot{margin-top:40px;font-size:12px;color:#999}
+  @media(max-width:480px){h1{font-size:22px}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>StackTrace Weekly · #1</h1>
+    <div class="sub">2026-06-25 → 2026-07-03 · 117 changes across 19 tools · <a href="https://stacktrace-site.vercel.app/rubric.html">how severity works</a></div>
+  </header>
+
+  
+  <div class="sec crit">Critical — act before your next deploy</div>
+  
+  <div class="item crit">
+    <div class="h">Liveblocks <span class="tag">v3.20.1</span></div>
+    <div>A bug in @liveblocks/client could cause data loss by overwriting room storage with initial values when large WebSocket messages are sent. This is a critical fix for a stable release that users in production must deploy immediately.</div>
+    <div class="act"><strong>Do this:</strong> Update to v3.20.1 immediately to prevent data loss from large WebSocket messages overwriting room storage.</div>
+    <a href="https://github.com/liveblocks/liveblocks/releases/tag/v3.20.1?utm_source=stacktrace&utm_medium=web&utm_content=critical">release notes →</a>
+  </div>
+  
+  
+
+  
+  <div class="sec note">Notable</div>
+  
+  <div class="cat">auth</div>
+  
+  <div class="item"><span class="h">Better Auth</span> <span class="tag">v1.6.22</span> — v1.6.22 is a patch release addressing multiple security-sensitive bug fixes across better-auth packages. Key fixes include preventing unproven credentials from persisting during authentication flows, blocking unsafe OAuth redirects, properly scoping SCIM operations, fixing organization subscription handling, and adding verification lockout for 2FA.
+    <a href="https://github.com/better-auth/better-auth/releases/tag/v1.6.22?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  <div class="item"><span class="h">Better Auth</span> <span class="tag">v1.6.21</span> — v1.6.21 is a patch release fixing multiple security and correctness issues across better-auth packages. Notable fixes include rate limit enforcement, session security improvements (admin permission immediacy, OAuth state validation, email uniqueness), two-factor lockout after failed attempts, and IP spoofing prevention in API keys.
+    <a href="https://github.com/better-auth/better-auth/releases/tag/v1.6.21?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  
+  <div class="cat">jobs</div>
+  
+  <div class="item"><span class="h">Trigger.dev</span> <span class="tag">v4.5.0</span> — Trigger.dev v4.5.0 introduces AI Agents (`chat.agent`) for running durable Vercel AI SDK chat completions as resilient tasks, plus Sessions for bidirectional streams, AI Prompts for versioned templates, and new developer features like dev branches and instantiable `TriggerClient`. This is a stable release with significant new capabilities and improvements to the SDK and runtime.
+    <a href="https://github.com/triggerdotdev/trigger.dev/releases/tag/v4.5.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  
+  <div class="cat">hosting</div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/oidc-aws-credentials-provider@3.3.0</span> — @vercel/oidc-aws-credentials-provider@3.3.0 adds in-memory caching of exchanged OIDC tokens to reduce calls to the token-exchange endpoint, with LRU eviction and expiry-based invalidation. A new `skipTokenCache` option allows bypassing the cache when needed.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/oidc-aws-credentials-provider%403.3.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/backends@0.8.21</span> — Services that explicitly set `config.runtime = &#39;edge&#39;` will now fail to build with an `EDGE_RUNTIME_UNSUPPORTED_IN_SERVICES` error instead of silently building as Node functions. This change makes the unsupported configuration explicit rather than allowing silent failure.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/backends%400.8.21?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">vercel@54.18.4</span> — Vercel CLI 54.18.4 removes the non-functional `vercel buy v0` subcommand in favor of `vercel buy credits v0`, which is a breaking change to the CLI interface. Additional improvements include better rate-limit messaging and support for lazy-generated Build Output service configs.
+    <a href="https://github.com/vercel/vercel/releases/tag/vercel%4054.18.4?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  
+  <div class="cat">edge</div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">@cloudflare/vitest-pool-workers@0.18.0</span> — @cloudflare/vitest-pool-workers 0.18.0 adds support for declarative Durable Object exports as an alternative to the legacy migrations array. The vitest pool now reads Durable Object configuration from the new exports field, enabling tests to run with correct local SQLite storage and access unbound Durable Objects via ctx.exports.X.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/%40cloudflare/vitest-pool-workers%400.18.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">@cloudflare/workers-auth@0.4.0</span> — Cloudflare Workers Auth 0.4.0 adds opt-in OS keychain storage for OAuth credentials, encrypting them with AES-256-GCM instead of storing in plaintext. The feature is backward-compatible and can be toggled via CLI flags, subcommands, or environment variables.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/%40cloudflare/workers-auth%400.4.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">@cloudflare/vite-plugin@1.43.0</span> — Cloudflare Workers now supports declarative Durable Object exports via an `exports` map in wrangler.json as a modern alternative to the legacy `migrations` array. This new approach enables cleaner configuration for provisioning, renaming, deleting, and transferring Durable Objects, with full integration across local development, testing, and deployment workflows.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/%40cloudflare/vite-plugin%401.43.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">wrangler@4.107.0</span> — Wrangler 4.107.0 adds cache options for WorkerEntrypoint exports, declarative Durable Object lifecycle management via an `exports` map as an alternative to legacy `migrations`, and new CLI commands for managing Flagship apps and feature flags. These are significant new capabilities for Workers deployments and configuration management.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/wrangler%404.107.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">@cloudflare/vitest-pool-workers@0.17.0</span> — The `introspectWorkflow(...).get()` method is now async and must be awaited. Callers using this method synchronously will need to update their code to await the call, aligning the API with `createTestHarness()`.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/%40cloudflare/vitest-pool-workers%400.17.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">@cloudflare/deploy-helpers@0.2.5</span> — The skipLastDeployedFromApiCheck option has been removed from @cloudflare/deploy-helpers@0.2.5 as the underlying API issue it worked around has been fixed. Users relying on this temporary workaround will need to remove any references to it from their configuration.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/%40cloudflare/deploy-helpers%400.2.5?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  
+  <div class="cat">frontend</div>
+  
+  <div class="item"><span class="h">shadcn/ui</span> <span class="tag">@shadcn/react@0.2.0</span> — @shadcn/react@0.2.0 is a new minor release marking the initial stable release of the @shadcn/react package. This is a significant new addition to the shadcn/ui ecosystem enabling React-based component adoption.
+    <a href="https://github.com/shadcn-ui/ui/releases/tag/%40shadcn/react%400.2.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  
+  <div class="cat">runtime</div>
+  
+  <div class="item"><span class="h">Deno</span> <span class="tag">v2.9.0</span> — Deno v2.9.0 is a major feature release with significant additions including new CLI subcommands (deno link, deno unlink, deno watch, deno list), desktop app improvements, enhanced testing capabilities (parameterized tests, snapshot testing), CSS module imports, and numerous stability improvements across the runtime. This is a stable release with backwards-compatible new features and deprecation warnings rather than breaking changes.
+    <a href="https://github.com/denoland/deno/releases/tag/v2.9.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  
+  <div class="cat">cms</div>
+  
+  <div class="item"><span class="h">Directus</span> <span class="tag">v12.1.0</span> — Directus v12.1.0 removes two public hash utility endpoints (`/utils/hash/generate` and `/utils/hash/verify`) and modifies GraphQL mutation restrictions and WebSocket security checks. Applications relying on these endpoints will break unless updated to use alternative hashing methods.
+    <a href="https://github.com/directus/directus/releases/tag/v12.1.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  <div class="item"><span class="h">Payload CMS</span> <span class="tag">v3.85.2</span> — v3.85.2 is a patch release addressing 14 bugs including security vulnerabilities in dependencies (CVE-2026-46625 and high-severity audit issues) and various UI/database fixes. The security fixes in dependencies are the main highlight, though they are transitive/indirect vulnerabilities being addressed.
+    <a href="https://github.com/payloadcms/payload/releases/tag/v3.85.2?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  
+  <div class="cat">realtime</div>
+  
+  <div class="item"><span class="h">Liveblocks</span> <span class="tag">v3.21.0</span> — The `HistoryVersion` type has removed `type` and `kind` fields in `@liveblocks/client`, which is a breaking change to a stable API. Any code consuming these fields will fail at runtime or type-check time.
+    <a href="https://github.com/liveblocks/liveblocks/releases/tag/v3.21.0?utm_source=stacktrace&utm_medium=web&utm_content=notable">→</a></div>
+  
+  
+  
+
+  
+  <div class="sec fyi">FYI — patches & minor (99)</div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/xai@4.0.6</span> — This patch release adds experimental streaming transcription support for xAI WebSocket STT and OpenAI&#39;s gpt-realtime-whisper model. It also includes dependency updates to several internal provider packages.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/xai%404.0.6?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/workflow-harness@1.0.17</span> — @ai-sdk/workflow-harness@1.0.17 updates internal dependency @ai-sdk/harness to the same version. This is a routine maintenance release with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/workflow-harness%401.0.17?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/workflow@1.0.14</span> — Version 1.0.14 adds experimental streaming transcription support for transcription models including OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. This is a standard patch release with dependency updates across multiple ai-sdk packages.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/workflow%401.0.14?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/vue@4.0.14</span> — @ai-sdk/vue@4.0.14 updates dependencies to ai@7.0.14 and @ai-sdk/provider-utils@5.0.5. This is a routine patch release with no user-facing changes documented.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/vue%404.0.14?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/voyage@2.0.5</span> — This patch release adds experimental streaming transcription support for models like OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. It includes dependency updates to provider packages.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/voyage%402.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">ai@7.0.14</span> — Added experimental streaming transcription support for transcription models, including OpenAI&#39;s gpt-realtime-whisper and xAI WebSocket STT. This is a new capability that extends the SDK&#39;s transcription functionality with real-time streaming capabilities.
+    <a href="https://github.com/vercel/ai/releases/tag/ai%407.0.14?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/connect@0.3.2</span> — @vercel/connect@0.3.2 adds human-readable connector names to authorization challenges, allowing channels to display &#34;Sign in with Salesforce&#34; style messages. This is a backward-compatible enhancement with no breaking changes until the Vercel API begins returning the connector object.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/connect%400.3.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">vercel@54.19.0</span> — Vercel 54.19.0 adds a new `vercel vcr` command for managing Vercel Container Registry and includes quality-of-life improvements like integration aliases and improved marketplace legal document handling. This is a minor feature release with no breaking changes or security concerns.
+    <a href="https://github.com/vercel/vercel/releases/tag/vercel%4054.19.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Anthropic SDK</span> <span class="tag">sdk-v0.110.0</span> — Anthropic SDK v0.110.0 adds support for the agent-memory-2026-07-22 beta API header. This is a new feature addition to enable upcoming beta functionality for agent memory capabilities.
+    <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.110.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/workflow-harness@1.0.16</span> — @ai-sdk/workflow-harness was bumped to 1.0.16 with a corresponding patch to @ai-sdk/harness@1.0.16. This is a routine patch release with no breaking changes or notable features announced.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/workflow-harness%401.0.16?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/workflow@1.0.13</span> — @ai-sdk/workflow@1.0.13 updates the ai dependency to version 7.0.13. This patch release includes dependency updates with no breaking changes or new features.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/workflow%401.0.13?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/vue@4.0.13</span> — Vercel AI SDK Vue package 4.0.13 includes a patch version bump to the core ai package (7.0.13). This is a routine maintenance release with dependency updates.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/vue%404.0.13?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/vue@2.0.210</span> — @ai-sdk/vue@2.0.210 patches a dependency update to ai@5.0.210. This is a routine maintenance release with no breaking changes or new features.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/vue%402.0.210?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">ai@5.0.210</span> — Vercel AI SDK v5.0.210 updates the @ai-sdk/gateway dependency to v2.0.109. This is a routine dependency update with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/ai%405.0.210?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">ai@7.0.13</span> — This release updates an internal dependency on @ai-sdk/gateway to version 4.0.10. No user-facing changes or new features are included in this patch.
+    <a href="https://github.com/vercel/ai/releases/tag/ai%407.0.13?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/vue@3.0.219</span> — @ai-sdk/vue version 3.0.219 was released as a patch update. This release includes a dependency bump to ai@6.0.219.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/vue%403.0.219?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">ai@6.0.219</span> — This release updates the @ai-sdk/gateway dependency to version 3.0.143. It&#39;s a routine maintenance update with no breaking changes, new features, or security fixes.
+    <a href="https://github.com/vercel/ai/releases/tag/ai%406.0.219?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/xai@4.0.5</span> — Patch release updating internal dependencies. Updated @ai-sdk/provider-utils to 5.0.4 and @ai-sdk/openai-compatible to 3.0.4 for maintenance and compatibility.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/xai%404.0.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/workflow-harness@1.0.15</span> — @ai-sdk/workflow-harness@1.0.15 is a patch release that updates the internal harness dependency to version 1.0.15. This is a routine maintenance update with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/workflow-harness%401.0.15?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/workflow@1.0.12</span> — @ai-sdk/workflow 1.0.12 updates dependencies including ai@7.0.12 and @ai-sdk/provider-utils@5.0.4. This is a routine maintenance release with no user-facing changes.&lt;/summary&gt;
+&lt;parameter name=&#34;action_line&#34;&gt;
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/workflow%401.0.12?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/vue@4.0.12</span> — @ai-sdk/vue 4.0.12 updates dependencies to ai@7.0.12 and @ai-sdk/provider-utils@5.0.4. These are routine dependency maintenance updates with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/vue%404.0.12?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">@ai-sdk/voyage@2.0.4</span> — @ai-sdk/voyage@2.0.4 updates a dependency on @ai-sdk/provider-utils to version 5.0.4. This is a routine maintenance patch with no user-facing changes.
+    <a href="https://github.com/vercel/ai/releases/tag/%40ai-sdk/voyage%402.0.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel AI SDK</span> <span class="tag">ai@7.0.12</span> — Vercel AI SDK 7.0.12 includes a patch to sort tool results by their tool call order during generation output conversion and fixes an issue where extractJsonMiddleware was preserving unnecessary leading whitespace in streamed text. These are routine bug fixes with no API changes.
+    <a href="https://github.com/vercel/ai/releases/tag/ai%407.0.12?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Better Auth</span> <span class="tag">v1.7.0-rc.1</span> — Better Auth v1.7.0-rc.1 adds Yandex OAuth support and fixes several bugs including auth migration handling and row counting for adapters. This is a release candidate with incremental improvements to the 1.7.0 line.
+    <a href="https://github.com/better-auth/better-auth/releases/tag/v1.7.0-rc.1?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">@cloudflare/cli-shared-helpers@0.1.11</span> — @cloudflare/cli-shared-helpers@0.1.11 updates a dependency on @cloudflare/workers-utils to version 0.25.0. This is a routine maintenance release with no user-facing changes.&lt;/summary&gt;
+&lt;parameter name=&#34;action_line&#34;&gt;
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/%40cloudflare/cli-shared-helpers%400.1.11?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">@cloudflare/pages-shared@0.13.152</span> — @cloudflare/pages-shared@0.13.152 updates a dependency on miniflare to version 4.20260701.0. This is a routine patch release with no breaking changes or new features.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/%40cloudflare/pages-shared%400.13.152?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">@cloudflare/workers-utils@0.25.0</span> — @cloudflare/workers-utils v0.25.0 adds cache options for WorkerEntrypoint exports, allowing per-export cache configuration and global cross-version cache behavior control. This is a new feature in a stable release with no breaking changes or required actions.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/%40cloudflare/workers-utils%400.25.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">@cloudflare/deploy-helpers@0.3.0</span> — @cloudflare/deploy-helpers@0.3.0 adds cache options for WorkerEntrypoint exports, allowing per-export cache configuration in wrangler.json alongside global cross-version cache settings. This also includes a performance improvement for asset uploads using a more efficient server-side per-file upload path when enabled.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/%40cloudflare/deploy-helpers%400.3.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">miniflare@4.20260701.0</span> — Miniflare 4.20260701.0 updates the workerd dependency from 1.20260630.1 to 1.20260701.1. This is a routine dependency bump with no API changes or behavioral modifications.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/miniflare%404.20260701.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">@cloudflare/autoconfig@0.1.2</span> — @cloudflare/autoconfig v0.1.2 updates internal dependencies to @cloudflare/workers-utils@0.25.0 and @cloudflare/cli-shared-helpers@0.1.11. This is a routine maintenance patch with no user-facing changes.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/%40cloudflare/autoconfig%400.1.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Next.js</span> <span class="tag">v16.3.0-canary.75</span> — Next.js v16.3.0-canary.75 includes miscellaneous improvements to testing infrastructure, CI optimizations, and a fix for Turbopack subpath import specifiers. This is a prerelease canary build with no user-facing breaking changes or significant features.
+    <a href="https://github.com/vercel/next.js/releases/tag/v16.3.0-canary.75?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Stripe</span> <span class="tag">v22.4.0-alpha.2</span> — v22.4.0-alpha.2 updates the pinned API version to 2026-07-01.preview and adds support for new crypto payment resources, redaction capabilities across multiple resources, and additional payment method options. This is a prerelease alpha version with feature additions and minor breaking changes limited to preview APIs.
+    <a href="https://github.com/stripe/stripe-node/releases/tag/v22.4.0-alpha.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Anthropic SDK</span> <span class="tag">sdk-v0.109.1</span> — The Anthropic SDK v0.109.1 removes some nonfunctional types from the SDKs. This is a minor maintenance release with no breaking changes or new features.
+    <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.109.1?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Directus</span> <span class="tag">v12.1.1</span> — Directus v12.1.1 is a patch release updating the Vite dependency to 8.1.2 in both the app and API packages. This is a routine maintenance update with no breaking changes or new features.
+    <a href="https://github.com/directus/directus/releases/tag/v12.1.1?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Next.js</span> <span class="tag">v15.5.20</span> — v15.5.20 is a patch release that publishes the @next/swc-wasm-web package, which was missed in previous releases. This is a routine publishing fix with no functional changes to Next.js itself.
+    <a href="https://github.com/vercel/next.js/releases/tag/v15.5.20?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Next.js</span> <span class="tag">v16.2.10</span> — Next.js v16.2.10 republishes the @next/swc-wasm-web package which was missing from releases since v16.2.4. This is a maintenance release with no functional changes to the framework itself.
+    <a href="https://github.com/vercel/next.js/releases/tag/v16.2.10?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Deno</span> <span class="tag">v2.9.1</span> — Deno v2.9.1 is a patch release with bug fixes and performance improvements across the runtime, including fixes for desktop bundling, Node.js compatibility, npm package handling, and WebView support. No breaking changes or new stable features are introduced.
+    <a href="https://github.com/denoland/deno/releases/tag/v2.9.1?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/rust@1.4.0</span> — This release fixes instability in `vercel dev` with the Rust runtime by allocating unique free ports per dev server instance, eliminating &#34;address already in use&#34; errors. It also improves shutdown handling to allow background work registered via `waitUntil` to complete properly.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/rust%401.4.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/oidc@3.8.0</span> — @vercel/oidc@3.8.0 adds in-memory caching for exchanged OIDC tokens with automatic expiry and LRU eviction to reduce redundant token-exchange endpoint calls. A new `skipCache` option allows bypassing the cache when needed.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/oidc%403.8.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/functions@3.7.5</span> — @vercel/functions 3.7.5 updates the @vercel/oidc dependency to 3.8.0. This is a routine patch release with dependency updates.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/functions%403.7.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/connect@0.3.1</span> — @vercel/connect 0.3.1 updates the @vercel/oidc dependency to 3.8.0. This is a routine patch release with dependency maintenance changes.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/connect%400.3.1?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">vercel@54.18.7</span> — This patch fixes WebSocket close event handling and resolves a monorepo build issue with `vc build` when run from a subdirectory (opt-in via feature flag). Dependency updates to @vercel/rust and @vercel/node are included.
+    <a href="https://github.com/vercel/vercel/releases/tag/vercel%4054.18.7?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/aws@0.2.7</span> — @vercel/aws 0.2.7 updates dependencies, including a bump to @vercel/oidc-aws-credentials-provider 3.3.0. This is a routine maintenance release with no user-facing changes.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/aws%400.2.7?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/expo@3.6.5</span> — @clerk/expo 3.6.5 bumps bundled Android and iOS SDKs to their latest patch versions, along with updated dependencies. These are routine maintenance updates with no breaking changes or new features.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/expo%403.6.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/fastify@3.1.45</span> — @clerk/fastify@3.1.45 updates a dependency on @clerk/backend to version 3.10.0. This is a routine maintenance release with no breaking changes or new features.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/fastify%403.1.45?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/nuxt@2.6.11</span> — This patch release updates internal dependencies for @clerk/backend and @clerk/vue. No user-facing changes or breaking modifications are included.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/nuxt%402.6.11?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/express@2.1.35</span> — @clerk/express@2.1.35 updates the @clerk/backend dependency to version 3.10.0. This is a routine patch release with dependency maintenance.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/express%402.1.35?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/nextjs@7.5.12</span> — @clerk/nextjs 7.5.12 updates internal dependencies including @clerk/backend to 3.10.0 and @clerk/react to 6.11.3. This is a routine patch release with dependency maintenance.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/nextjs%407.5.12?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/electron@0.0.8</span> — Clerk Electron&#39;s ClerkProvider now automatically allows the renderer&#39;s custom scheme as a redirect protocol, eliminating the need for manual configuration in most cases. This simplifies setup while maintaining explicit control through the allowedRedirectProtocols option.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/electron%400.0.8?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/chrome-extension@3.1.47</span> — @clerk/chrome-extension v3.1.47 updates internal dependencies including @clerk/ui, @clerk/react, and @clerk/clerk-js. This is a routine maintenance release with no breaking changes or new features.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/chrome-extension%403.1.47?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/testing@2.2.2</span> — Clerk testing package updated to version 2.2.2 with a dependency bump to @clerk/backend@3.10.0. This is a routine maintenance patch with no breaking changes or new features.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/testing%402.2.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/tanstack-react-start@1.4.12</span> — @clerk/tanstack-react-start 1.4.12 updates internal dependencies including @clerk/backend to 3.10.0 and @clerk/react to 6.11.3. This is a routine dependency maintenance release with no breaking changes or new features.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/tanstack-react-start%401.4.12?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/backend@3.10.0</span> — Clerk Backend v3.10.0 adds an experimental clerkClient.emails.create() method for sending transactional emails with flexible recipient and content options. This experimental API may change in future releases and does not require immediate action.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/backend%403.10.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/ui@1.24.1</span> — @clerk/ui v1.24.1 adds an accessible name to the API Keys search input for improved screen reader announcements. This is a minor accessibility improvement with no breaking changes or new features.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/ui%401.24.1?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/hono@0.1.45</span> — @clerk/hono@0.1.45 updates the @clerk/backend dependency to version 3.10.0. This is a routine patch release with no breaking changes or new features.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/hono%400.1.45?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/react-router@3.5.4</span> — @clerk/react-router v3.5.4 updates internal dependencies including @clerk/backend and @clerk/react to their latest versions. This is a routine maintenance release with no breaking changes or new features.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/react-router%403.5.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/astro@3.4.11</span> — @clerk/astro@3.4.11 updates the @clerk/backend dependency to version 3.10.0. This is a routine dependency maintenance release with no user-facing changes.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/astro%403.4.11?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Anthropic SDK</span> <span class="tag">sdk-v0.109.0</span> — SDK v0.109.0 adds support for Managed Agents event delta streaming, agent overrides, reverse pagination, and webhook events. These are additive feature capabilities with no breaking changes to existing APIs.
+    <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.109.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/tanstack-react-start@1.4.11</span> — This is a patch release that updates internal dependencies to @clerk/backend@3.9.0, @clerk/shared@4.23.0, and @clerk/react@6.11.3. No breaking changes or new features are introduced in this release.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/tanstack-react-start%401.4.11?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/testing@2.2.1</span> — @clerk/testing@2.2.1 updates internal dependencies (@clerk/backend and @clerk/shared) to their latest patches. This is a routine maintenance release with no breaking changes or new features.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/testing%402.2.1?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/vue@2.4.10</span> — @clerk/vue version 2.4.10 updates internal dependencies to @clerk/shared@4.23.0. This is a standard maintenance release with no user-facing changes.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/vue%402.4.10?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/ui@1.24.0</span> — @clerk/ui v1.24.0 adds an account credits section and credit history page to the billing tab for payers with existing credit balances. This minor release also includes a patch fix for UserButton session actions alignment and routine dependency updates.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/ui%401.24.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/react@6.11.3</span> — @clerk/react 6.11.3 updates the @clerk/shared dependency to 4.23.0. This is a routine patch release with internal dependency updates and no user-facing changes.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/react%406.11.3?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Clerk</span> <span class="tag">@clerk/shared@4.23.0</span> — Clerk shared 4.23.0 adds a new account credits section and credit history page to the billing tab for users with existing credit balances. It also includes a patch fix for native OAuth transport handling in combined sign-in-or-up flows.
+    <a href="https://github.com/clerk/javascript/releases/tag/%40clerk/shared%404.23.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Anthropic SDK</span> <span class="tag">aws-sdk-v0.6.0</span> — aws-sdk v0.6.0 adds support for passing a client logger to the AWS credential provider chain in Bedrock. This is a minor enhancement that improves logging capabilities during AWS authentication without affecting existing functionality.
+    <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/aws-sdk-v0.6.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Anthropic SDK</span> <span class="tag">bedrock-sdk-v0.32.0</span> — The Anthropic Bedrock SDK v0.32.0 adds support for passing a client logger to the AWS credential provider chain. This improves logging visibility during AWS credential operations.
+    <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/bedrock-sdk-v0.32.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Anthropic SDK</span> <span class="tag">vertex-sdk-v0.19.0</span> — This release bumps the google-auth-library dependency to version ^10.2.0. This is a routine dependency update with no user-facing feature changes or breaking changes.
+    <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/vertex-sdk-v0.19.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Anthropic SDK</span> <span class="tag">sdk-v0.108.0</span> — This release adds support for the claude-sonnet-5 model and fixes a bug in agent-toolset path resolution. It&#39;s a routine update with new model availability and a minor bug fix.
+    <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.108.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">@cloudflare/vite-plugin@1.42.4</span> — This patch fixes D1 migration path handling in the Vite plugin, ensuring that generated Worker configs correctly reference the source migration directory. This enables tools like createTestHarness() to locate D1 migrations properly without breaking changes.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/%40cloudflare/vite-plugin%401.42.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">wrangler@4.106.0</span> — wrangler@4.106.0 adds new CLI commands and features including AI Search job management, auth profiles for multiple OAuth logins, D1 migration support in test harnesses, and Workflow introspection capabilities. This is a minor release with backward-compatible additions to the developer tooling.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/wrangler%404.106.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">miniflare@4.20260630.0</span> — Miniflare 4.20260630.0 updates the workerd dependency and fixes edge cases in the local R2 public bucket endpoint to match r2.dev behavior. It also adds Workflow introspection capabilities to createTestHarness() for improved testing of Workflow bindings.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/miniflare%404.20260630.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">create-cloudflare@2.70.7</span> — create-cloudflare 2.70.7 updates multiple dependencies including create-vite, create-astro, nuxi, and others to their latest versions. It also fixes npm install failures for Analog projects by opting out of Vite overrides that were causing dependency resolution issues.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/create-cloudflare%402.70.7?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">@cloudflare/pages-shared@0.13.151</span> — @cloudflare/pages-shared@0.13.151 updates its dependency on miniflare to version 4.20260630.0. This is a routine dependency bump with no user-facing changes.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/%40cloudflare/pages-shared%400.13.151?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/express@0.1.112</span> — @vercel/express@0.1.112 is a patch release that updates an internal dependency. This is a routine maintenance update with no user-facing changes or new functionality.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/express%400.1.112?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">vercel@54.18.6</span> — Vercel CLI patch 54.18.6 updates the rolling release start endpoint and bumps internal dependencies. This is a routine maintenance release with no user-facing changes.
+    <a href="https://github.com/vercel/vercel/releases/tag/vercel%4054.18.6?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/cervel@0.1.29</span> — @vercel/cervel@0.1.29 updates internal dependency @vercel/backends to version 0.8.21. This is a routine maintenance release with no user-facing changes or API modifications.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/cervel%400.1.29?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/fs-detectors@6.11.5</span> — @vercel/fs-detectors 6.11.5 is a patch release that updates the @vercel/frameworks dependency to 3.30.4. This is a routine maintenance update with no new features or breaking changes.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/fs-detectors%406.11.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/frameworks@3.30.4</span> — This patch updates icon styling for services and containers to use circle icons that adapt to dark and light mode themes. No breaking changes or new features are introduced.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/frameworks%403.30.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">vercel@54.18.5</span> — Vercel CLI&#39;s `vc logs` command now exposes a `cacheReason` field alongside cache status to help developers understand why requests were cache MISS, BYPASS, or STALE. This is a small observability improvement with no breaking changes.
+    <a href="https://github.com/vercel/vercel/releases/tag/vercel%4054.18.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Better Auth</span> <span class="tag">v1.6.23</span> — Better Auth v1.6.23 adds Yandex OAuth provider support and fixes several bugs in the drizzle adapter, stripe integration, and CLI schema generation. This is a routine maintenance release with minor improvements and bug fixes across multiple packages.
+    <a href="https://github.com/better-auth/better-auth/releases/tag/v1.6.23?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/passport@0.1.2</span> — @vercel/passport 0.1.2 fixes how the Passport cookie is read from Vercel request context headers. This is a maintenance update to an internal authentication utility with no breaking changes or new features.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/passport%400.1.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Inngest</span> <span class="tag">v1.34.0</span> — Inngest v1.34.0 is a maintenance release with bug fixes for rerun-from-step functionality, custom concurrency cache keys, and extended traces display. It includes minor features like search on the sessions route and UI improvements across the dashboard.
+    <a href="https://github.com/inngest/inngest/releases/tag/v1.34.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">@vercel/next@4.20.2</span> — @vercel/next 4.20.2 adds support for stable Cache Components without requiring experimental PPR (Partial Pre-Rendering). This is a routine patch that expands cache component functionality to work in more configurations.
+    <a href="https://github.com/vercel/vercel/releases/tag/%40vercel/next%404.20.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Vercel</span> <span class="tag">vercel@54.18.3</span> — vercel@54.18.3 fixes several bugs in `vercel dev` for container framework builds, including Docker daemon detection, container reuse across requests, and Dockerfile discovery. Service name validation has also been aligned with platform schema.
+    <a href="https://github.com/vercel/vercel/releases/tag/vercel%4054.18.3?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Anthropic SDK</span> <span class="tag">sdk-v0.107.0</span> — Anthropic SDK v0.107.0 adds support for the 20260318 web fetch and support tools API. The release also includes bug fixes for symlink handling, type restoration, and documentation updates.
+    <a href="https://github.com/anthropics/anthropic-sdk-typescript/releases/tag/sdk-v0.107.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Tailwind CSS</span> <span class="tag">v4.3.2</span> — Tailwind CSS v4.3.2 is a patch release containing 12 bug fixes across the CLI, Vite plugin, and core utilities. Fixes include support for bare spacing values in auto-rows/auto-cols, CLI watch mode stability on Windows, Vite plugin compatibility with Deno v2.8.x, and improved class candidate extraction for Template Toolkit and Maud syntax.&lt;/summary&gt;
+&lt;parameter name=&#34;action_line&#34;&gt;
+    <a href="https://github.com/tailwindlabs/tailwindcss/releases/tag/v4.3.2?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">PocketBase</span> <span class="tag">v0.39.5</span> — PocketBase v0.39.5 includes UI improvements for long URL field values, reintroduced the fullscreen editor option with faster TinyMCE rendering, and updated the goja dependency with TypedArray fixes. These are minor enhancements and bug fixes with no breaking changes or significant API modifications.
+    <a href="https://github.com/pocketbase/pocketbase/releases/tag/v0.39.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Drizzle ORM</span> <span class="tag">v1.0.0-rc.4</span> — v1.0.0-rc.4 is a prerelease candidate with numerous bug fixes, codec system improvements, and internal refactoring across SQLite, MySQL, and PostgreSQL drivers. While the release includes breaking changes (RQBv1 removal, method removals from PreparedQuery), these are acceptable in a prerelease channel.
+    <a href="https://github.com/drizzle-team/drizzle-orm/releases/tag/v1.0.0-rc.4?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Better Auth</span> <span class="tag">v1.7.0-rc.0</span> — v1.7.0-rc.0 is a prerelease containing multiple breaking changes to captcha matching, MCP package structure, OAuth provider OIDC support, and OAuth resource models. Since this is a release candidate in the prerelease channel, it does not require immediate action before next deploy.
+    <a href="https://github.com/better-auth/better-auth/releases/tag/v1.7.0-rc.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">shadcn/ui</span> <span class="tag">shadcn@4.12.0</span> — shadcn/ui 4.12.0 adds scroll-fade and shimmer utility components for enhancing UI animations and effects. This is a backwards-compatible minor release with new optional utilities for developers to use.
+    <a href="https://github.com/shadcn-ui/ui/releases/tag/shadcn%404.12.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Better Auth</span> <span class="tag">v1.7.0-beta.10</span> — This is a beta release (v1.7.0-beta.10) containing bug fixes across multiple Better Auth packages, including security and stability improvements to OAuth, TOTP verification, and session handling. A new entry point for Drizzle Relations v2 support and a token reuse interval option were also added.
+    <a href="https://github.com/better-auth/better-auth/releases/tag/v1.7.0-beta.10?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Resend</span> <span class="tag">v6.15.0</span> — Resend v6.15.0 adds message_id exposure on get and list API responses. This is a backward-compatible feature addition that provides additional data in response payloads.
+    <a href="https://github.com/resend/resend-node/releases/tag/v6.15.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Resend</span> <span class="tag">v6.14.0</span> — Resend v6.14.0 adds new Domain Claim API methods for domain management in the Node.js SDK. This is a routine feature release with no breaking changes or deprecations.
+    <a href="https://github.com/resend/resend-node/releases/tag/v6.14.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">shadcn/ui</span> <span class="tag">shadcn@4.11.1</span> — shadcn/ui 4.11.1 replaces node-fetch with native fetch and fixes dependency handling in the `shadcn add` command. These are minor improvements to internal implementation and tooling behavior.
+    <a href="https://github.com/shadcn-ui/ui/releases/tag/shadcn%404.11.1?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Next.js</span> <span class="tag">v16.3.0-preview.5</span> — Next.js v16.3.0-preview.5 is a preview release containing miscellaneous bug fixes, documentation updates, and internal improvements. This includes fixes for local fonts in ImageResponse, prefetch behavior, ServiceWorker compilation, and various dev tooling enhancements.
+    <a href="https://github.com/vercel/next.js/releases/tag/v16.3.0-preview.5?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Inngest</span> <span class="tag">v1.33.1-test.3</span> — This is a prerelease test build of Inngest v1.33.1. No functional changes or features are documented in these release notes.
+    <a href="https://github.com/inngest/inngest/releases/tag/v1.33.1-test.3?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">@cloudflare/vitest-pool-workers@0.16.20</span> — Adds `evictDurableObject` and `evictAllDurableObjects` test helpers to the `cloudflare:test` module, enabling developers to test how Durable Objects behave during eviction scenarios. Also fixes SQL escaping issues in D1 migration commands for table names and filenames containing special characters.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/%40cloudflare/vitest-pool-workers%400.16.20?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">miniflare@4.20260625.0</span> — Miniflare 4.20260625.0 updates the workerd dependency from 1.20260623.1 to 1.20260625.1. This is a routine dependency bump with no user-facing changes announced.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/miniflare%404.20260625.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  <div class="item"><span class="h">Cloudflare Workers</span> <span class="tag">wrangler@4.105.0</span> — wrangler@4.105.0 adds Google Artifact Registry support to container registries configuration and includes several bug fixes. The release contains a new minor feature for GAR integration, dependency updates, and fixes for D1 migration SQL escaping and Dockerfile digest pinning.
+    <a href="https://github.com/cloudflare/workers-sdk/releases/tag/wrangler%404.105.0?utm_source=stacktrace&utm_medium=web&utm_content=fyi">→</a></div>
+  
+  
+
+  <div class="foot">
+    StackTrace Weekly · AI-classified against a <a href="https://stacktrace-site.vercel.app/rubric.html">published rubric</a> ·
+    <a href="https://stacktraceweekly.beehiiv.com/subscribe">subscribe</a>
+  </div>
+</div>
+</body>
+</html>

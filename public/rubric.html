@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StackTrace Weekly · How severity works</title>
+<meta name="description" content="How StackTrace Weekly classifies developer-tool releases as CRITICAL, NOTABLE, or FYI.">
+<style>
+  body{max-width:720px;margin:0 auto;padding:40px 20px 80px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6;color:#1a1a1a}
+  h1{letter-spacing:-.02em} h2{margin-top:28px} code{background:#f4f4f4;padding:1px 5px;border-radius:3px}
+  a{color:#0645ad;text-decoration:none} .crit{color:#b00020} .note{color:#996a00}
+  .box{border-left:3px solid #ddd;padding-left:14px;margin:16px 0}
+</style>
+</head>
+<body>
+<h1>How severity works</h1>
+<p>StackTrace Weekly reads the changelogs of 30 developer tools and classifies every
+release. Classification is AI-assisted against this fixed rubric, then two deterministic
+code checks run before anything is published: prereleases are capped at FYI, and no item
+is marked CRITICAL without a verbatim quote from the release notes proving the change.
+We bias toward the <em>lower</em> severity when uncertain, and never inflate to fill space.</p>
+
+<div class="box"><h2 class="crit">🔴 CRITICAL</h2>
+A reader running this tool in production must read it before their next deploy: a breaking
+change to a stable public API/default in a stable release, a security fix on stable, or a
+deprecation/EOL with a removal deadline within 90 days. Always backed by a direct quote.</div>
+
+<div class="box"><h2 class="note">🟡 NOTABLE</h2>
+Worth knowing, no action this week: new stable features, GA of a beta, distant deprecations,
+significant performance/pricing changes, or a breaking change that only lands in a prerelease.</div>
+
+<div class="box"><h2>⚪ FYI</h2>
+Everything else: patches, docs, DX polish, dependency bumps, and all alpha/beta/rc/canary
+releases without a headline feature. Multiple patch releases of one tool are collapsed.</div>
+
+<p style="margin-top:32px"><a href="/">← back to issues</a></p>
+</body>
+</html>
