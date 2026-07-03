@@ -30,7 +30,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,[
 .stroke.in{color:var(--ink)}
 .stroke.sw{-webkit-text-stroke-color:#fff}.stroke.sw.in{color:#fff}
 .stroke.critstroke{-webkit-text-stroke-color:var(--crit)}
-.split .w{display:inline-block;overflow:hidden;vertical-align:top}
+/* overflow:hidden masks the slide-in reveal; the padding+negative-margin gives
+   descenders (g, y, p, j) room so they are not clipped at rest. */
+.split .w{display:inline-block;overflow:hidden;vertical-align:top;padding:.06em 0 .2em;margin:-.06em 0 -.2em}
 .split .wi{display:inline-block;transform:translateY(120%);transition:transform .9s cubic-bezier(.16,.85,.26,1)}
 .split.in .wi{transform:none}
 .split.in .w:nth-child(2) .wi{transition-delay:.06s}.split.in .w:nth-child(3) .wi{transition-delay:.12s}
