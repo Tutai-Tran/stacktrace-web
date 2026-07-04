@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState, Fragment } from "react";
 import { site } from "./lib/data";
+import { SubscribeForm } from "./SubscribeForm";
 
 // split a string into the animated word spans (outline -> slide-in reveal)
 const words = (s: string) =>
@@ -116,11 +117,7 @@ export default function Landing() {
       <nav className="nav">
         <div className="wrap nav-inner">
           <div className="brand">
-            <span className="stripe" aria-hidden>
-              <span style={{ background: "var(--crit-solid)" }} />
-              <span style={{ background: "var(--amber)" }} />
-              <span style={{ background: "var(--fyi)" }} />
-            </span>
+            <img className="brand-mark" src="/brand/logo-80.png" width={28} height={28} alt="" aria-hidden />
             <span className="brand-name">StackTrace</span>
           </div>
           <div className="navlinks">
@@ -142,11 +139,7 @@ export default function Landing() {
               <span className="split" style={{ display: "block" }}><span className="w"><span className="wi red">this week.</span></span></span>
             </h1>
             <p className="fade d1 lede">A weekly digest of what changed in 30 developer tools, classified by severity, so you catch the breaking changes before your next deploy.</p>
-            <form className="fade d2 cta-form" method="get" action={s.subscribeUrl}>
-              <label className="sr-only" htmlFor="he" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)" }}>Email address</label>
-              <input id="he" className="cta-input" type="email" name="email" required placeholder="you@company.com" autoComplete="email" />
-              <button type="submit" className="cta-btn mag">Get the free weekly →</button>
-            </form>
+            <SubscribeForm variant="hero" />
           </div>
 
           {/* live triage console */}
@@ -311,11 +304,7 @@ export default function Landing() {
         <div className="inner">
           <h2 className="stroke sw fade footer-h2">DEPLOY<br />SAFELY.</h2>
           <div className="fade d1 footer-row">
-            <form className="footer-form" method="get" action={s.subscribeUrl}>
-              <label className="sr-only" htmlFor="fe" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)" }}>Email address</label>
-              <input id="fe" className="footer-input inp-dark" type="email" name="email" required placeholder="you@company.com" autoComplete="email" />
-              <button type="submit" className="footer-btn mag">Get the free weekly →</button>
-            </form>
+            <SubscribeForm variant="footer" />
             <p className="footer-note">AI-classified against a <a onClick={() => setModal("rubric")}>published rubric</a>. One email a week · unsubscribe anytime.</p>
           </div>
           <div className="footer-meta"><span>STACKTRACE WEEKLY</span><span>ISSUE #{s.issueNo}, {s.issueDate}</span></div>
