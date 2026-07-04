@@ -139,7 +139,7 @@ export default function Landing() {
               <span className="split" style={{ display: "block" }}><span className="w"><span className="wi red">this week.</span></span></span>
             </h1>
             <p className="fade d1 lede">A weekly digest of what changed in 30 developer tools, classified by severity, so you catch the breaking changes before your next deploy.</p>
-            <SubscribeForm variant="hero" />
+            <div id="subscribe"><SubscribeForm variant="hero" /></div>
           </div>
 
           {/* live triage console */}

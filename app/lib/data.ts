@@ -9,7 +9,7 @@ export const site: SiteData = {
   critCount: 1,
   notableCount: 3,
   fyiCount: 104,
-  subscribeUrl: "https://stacktraceweekly.beehiiv.com/subscribe",
+  subscribeUrl: "https://stacktrace-web.vercel.app/#subscribe",
   critical: {
     tool: "Liveblocks",
     version: "v3.20.1",
