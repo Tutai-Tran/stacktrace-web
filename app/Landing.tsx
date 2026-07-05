@@ -123,7 +123,12 @@ export default function Landing() {
           <div className="navlinks">
             <a href="#tiers" className="navlink">severity</a>
             <button className="navlink" onClick={() => setModal("rubric")} style={{ background: "none", border: 0, cursor: "pointer" }}>rubric</button>
-            <a href={s.subscribeUrl} className="pill mag">Subscribe</a>
+            <a href="#subscribe" className="pill mag" onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById("subscribe");
+              el?.scrollIntoView({ behavior: "smooth", block: "center" });
+              (el?.querySelector("input") as HTMLInputElement | null)?.focus({ preventScroll: true });
+            }}>Subscribe</a>
           </div>
         </div>
       </nav>
@@ -139,7 +144,7 @@ export default function Landing() {
               <span className="split" style={{ display: "block" }}><span className="w"><span className="wi red">this week.</span></span></span>
             </h1>
             <p className="fade d1 lede">A weekly digest of what changed in 30 developer tools, classified by severity, so you catch the breaking changes before your next deploy.</p>
-            <div id="subscribe"><SubscribeForm variant="hero" /></div>
+            <div id="subscribe" style={{ scrollMarginTop: 100 }}><SubscribeForm variant="hero" /></div>
           </div>
 
           {/* live triage console */}
@@ -349,7 +354,12 @@ export default function Landing() {
                   <span className="tg"><span className="dt" />FYI</span>
                   <span className="tx">+{s.fyiCount} patches, dependency bumps, and prereleases, collapsed so the signal stays clean.</span>
                 </div>
-                <a className="m-cta" href={s.subscribeUrl}>Get this in your inbox every week →</a>
+                <a className="m-cta" href="#subscribe" onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById("subscribe");
+                  el?.scrollIntoView({ behavior: "smooth", block: "center" });
+                  (el?.querySelector("input") as HTMLInputElement | null)?.focus({ preventScroll: true });
+                }}>Get this in your inbox every week →</a>
               </div>
             )}
 
