@@ -52,8 +52,7 @@ input::placeholder{color:var(--faint);opacity:1}
   backdrop-filter:blur(10px);color:var(--ink);border-bottom:1.5px solid var(--ink)}
 .nav-inner{padding:22px 38px;display:flex;align-items:center;justify-content:space-between}
 .brand{display:flex;align-items:center;gap:12px}
-.stripe{display:flex;width:30px;height:10px;overflow:hidden}
-.stripe span{flex:1}
+.brand-mark{width:28px;height:28px;border-radius:7px;display:block}
 .brand-name{font-family:var(--disp);font-size:16px;font-weight:700;letter-spacing:-.02em}
 .navlinks{display:flex;align-items:center;gap:26px}
 .navlink{font-family:var(--mono);font-size:12px}
